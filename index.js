@@ -16,4 +16,21 @@ const firebaseConfig = {
 const app = initializeApp(firebaseConfig);
 const auth = getAuth(app);
 const database = getDatabase(app);
-const referenceInDB = ref(database, "messages")
+const referenceInDB = ref(database, "messages");
+
+const sendBtn = document.querySelector('#send-button');
+let messageInput = document.querySelector('#message-input');
+
+const sendMessage = () => {
+    push(referenceInDB, messageInput.value);
+    messageInput.value = '';
+}
+
+const handleSend = (e) => {
+    if (e.type === 'click' || (e.type === 'keypress' && e.key === 'Enter')) {
+        e.preventDefault();
+        sendMessage();
+    }
+}
+messageInput.addEventListener('keypress', handleSend)
+sendBtn.addEventListener('click', handleSend);
