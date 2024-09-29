@@ -3,15 +3,48 @@
     padding: 0;
     box-sizing: border-box;
     font-family: 'Roboto', sans-serif;
+    background-color: rgb(0, 109, 109);
+}
+
+.container {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+#chat-container {
+    display: flex;
+    align-items: flex-end;
+    width: 60%;
+    height: 100vh;
+    background-color: rgb(24, 24, 24);
+    padding: 0 10px;
 }
 
 textarea {
-    border: 1px solid red;
+    display: block;
+    background-color: rgb(68, 68, 68);
+    color: snow;
     border-radius: 10px;
+    border: none;
     padding: 10px;
-    margin: 20px 5px 20px 5px;
+    margin: 10px auto;
     height: 60px;
-    width: calc(100% - 10px);
+    width: 96%;
     font-size: 14px;
     resize: none;
+}
+
+#send-button {
+    height: 60px;
+    margin: 10px 0;
+    padding: 10px 20px;
+    border-radius: 10px;
+    border: none;
+    color: white;
+    background-color: grey;
+}
+
+textarea:focus {
+    border: none;
 }
