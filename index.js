@@ -1,4 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
+import { getDatabase, ref, push, onValue, remove } from "https://real-time-chat-app-57ee0-default-rtdb.europe-west1.firebasedatabase.app"
 
 const firebaseConfig = {
     apiKey: "AIzaSyCJBKNFZ6pvSwuwH1ms0Ca3w8p-P0c97WY",
@@ -11,5 +12,6 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
-const database = firebase.database();
+const database = getDatabase(app);
+const referenceInDB = ref(database, "messages")
 const auth = firebase.auth();
