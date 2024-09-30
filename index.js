@@ -27,7 +27,7 @@ const render = (messages) => {
     for (let message of messages) {
         listItems += `
         <li>
-            <p>${message}</p>
+            ${message}
         </li>
         `
     }
@@ -46,6 +46,7 @@ onValue (referenceInDB, (snapshot) => {
 const sendMessage = () => {
     push(referenceInDB, messageInput.value);
     messageInput.value = '';
+    sendBtn.disabled = true
 }
 
 const handleSend = (e) => {
@@ -54,5 +55,6 @@ const handleSend = (e) => {
         sendMessage();
     }
 }
+
 messageInput.addEventListener('keypress', handleSend)
 sendBtn.addEventListener('click', handleSend);

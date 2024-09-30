@@ -28,13 +28,11 @@ body {
 }
 
 textarea {
-    display: block;
     background-color: rgb(68, 68, 68);
     color: snow;
     border-radius: 10px;
     border: none;
     padding: 10px;
-    height: 60px;
     width: 96%;
     font-size: 14px;
     resize: none;
@@ -42,11 +40,11 @@ textarea {
 
 #input-container {
     display: flex;
+    gap: 2px;
     margin: 0;
     margin-bottom: 10px;
 }
 #send-button {
-    height: 60px;
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
@@ -64,16 +62,33 @@ textarea {
 }
 
 #messages {
+    display: flex;
+    flex-direction: column;
+    align-items: flex-end;
     list-style: none;
     position: absolute;
     bottom: 0;
     right: 0;
-    margin: 10px;
+    margin-bottom: 10px;
     max-width: 60%;
 }
-p {
-    padding: 5px;
-    margin: 5px;
-    border: 1px solid white;
-    border-radius: 50px;
+
+li {
+    width: fit-content;
+    max-width: 60%;
+    padding: 7px 12px;
+    margin-bottom: 2px;
+    border: none;
+    background-color: rgb(49, 49, 49);
+    border-radius: 15px;
+    border-bottom-right-radius: 0;
+    border-top-right-radius: 0;
+}
+
+li:last-child {
+    border-bottom-right-radius: 15px;
+}
+
+li:first-child {
+    border-top-right-radius: 15px;
 }
