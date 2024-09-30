@@ -27,32 +27,56 @@ body {
     bottom: 0;
 }
 
-textarea {
+.message-input {
     background-color: rgb(68, 68, 68);
     color: snow;
     border-radius: 10px;
     border: none;
     padding: 10px;
-    width: 96%;
     font-size: 14px;
+    flex-grow: 80;
     resize: none;
 }
 
 #input-container {
     display: flex;
-    justify-content: center;
-    gap: 2px;
+    align-items: flex-end;
+    gap: 5px;
+    width: 100%;
     margin: 0;
     margin-bottom: 10px;
+    position: relative;
 }
-#send-button,
-#remove-btn {
+.send-button,
+.remove-btn {
+    font-size: 14px;
+    line-height: 13px;
+    font-weight: 500;
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
-    color: white;
-    background-color: grey;
     cursor: pointer;
+    flex-grow: 1;
+}
+
+.send-button {
+    position: absolute;
+    right: 10px;
+    align-self: center;
+    height: 40px;
+    width: 40px;
+    border-radius: 50%;
+    text-align: center;
+}
+
+.enabledBtn {
+    background-color: white;
+    color: black;
+}
+
+.disabledBtn {
+    opacity: 15%;
+    cursor: default;
 }
 
 #messages-container {
@@ -77,8 +101,7 @@ textarea {
 }
 
 li {
-    width: fit-content;
-    max-width: 60%;
+    max-width: 80%;
     padding: 7px 12px;
     margin-bottom: 2px;
     border: none;
@@ -86,6 +109,8 @@ li {
     border-radius: 15px;
     border-bottom-right-radius: 0;
     border-top-right-radius: 0;
+    overflow: hidden;
+    word-wrap: break-word;
 }
 
 li:last-child {

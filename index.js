@@ -26,9 +26,7 @@ const render = (messages) => {
     let listItems = ''
     for (let message of messages) {
         listItems += `
-        <li>
-            ${message}
-        </li>
+        <li>${message}</li>
         `
     }
     ulEl.innerHTML = listItems
@@ -45,11 +43,23 @@ onValue (referenceInDB, (snapshot) => {
 })
 
 const toggleSendButton = () => {
-    if (messageInput.value.trim() !== '') // trim() is used to remove any leading or trailing whitespace from the input value, so even if the user types just spaces, the button will remain disabled
+    if (messageInput.value.trim() !== '') { // trim() is used to remove any leading or trailing whitespace from the input value, so even if the user types just spaces, the button will remain disabled
         sendBtn.disabled = false
-    else
+        sendBtn.classList.add('enabledBtn');
+        sendBtn.classList.remove('disabledBtn');
+    }
+    else {
         sendBtn.disabled = true;
+        sendBtn.classList.remove('enabledBtn');
+        sendBtn.classList.add('disabledBtn');
+    }
 }
+
+//Make the textarea height to grow based on the user input
+messageInput.addEventListener('input', () => {
+    messageInput.style.height = 'auto'; // Reset the height
+    messageInput.style.height = messageInput.scrollHeight + 'px'; // Set the new height
+});
 
 const sendMessage = () => {
     if (messageInput.value) {
@@ -65,13 +75,13 @@ const handleSend = (e) => {
     }
 }
 
-// const removeBtn = document.querySelector("#remove-btn")
+const removeBtn = document.querySelector("#remove-btn")
 
-// const clearData = () => {
-//     remove(referenceInDB)
-// }
+const clearData = () => {
+    remove(referenceInDB)
+}
 
 messageInput.addEventListener('keypress', handleSend)
 messageInput.addEventListener('input', toggleSendButton);
 sendBtn.addEventListener('click',  handleSend);
-// removeBtn.addEventListener('click', clearData);
+removeBtn.addEventListener('click', clearData);

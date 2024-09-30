@@ -19,9 +19,13 @@
                 <ul id="messages"></ul>
             </div>
             <div id="input-container">
-                <!-- <button id="remove-btn">Delete chat</button> -->
-                <textarea id="message-input" placeholder="Type your message..."></textarea>
-                <button id="send-button">Send</button>
+                <button class="remove-btn" id="remove-btn">Clear chat</button>
+                <textarea
+                    class="message-input"
+                    id="message-input"
+                    placeholder="Type your message..."
+                    data-gramm="false"></textarea>
+                <button class="send-button disabledBtn" id="send-button">Send</button>
             </div>
         </div>
     </div>
