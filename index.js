@@ -20,6 +20,28 @@ const referenceInDB = ref(database, "messages");
 
 const sendBtn = document.querySelector('#send-button');
 let messageInput = document.querySelector('#message-input');
+const ulEl = document.querySelector('#messages')
+
+const render = (messages) => {
+    let listItems = ''
+    for (let message of messages) {
+        listItems += `
+        <li>
+            <p>${message}</p>
+        </li>
+        `
+    }
+    ulEl.innerHTML = listItems
+}
+
+onValue (referenceInDB, (snapshot) => {
+    const snapshotDoesExist = snapshot.exists();
+    if (snapshotDoesExist) {
+        const snapshotValues = snapshot.val();
+        const messages = Object.values(snapshotValues);
+        render(messages);
+    }
+})
 
 const sendMessage = () => {
     push(referenceInDB, messageInput.value);
