@@ -40,16 +40,19 @@ textarea {
 
 #input-container {
     display: flex;
+    justify-content: center;
     gap: 2px;
     margin: 0;
     margin-bottom: 10px;
 }
-#send-button {
+#send-button,
+#remove-btn {
     padding: 10px 20px;
     border-radius: 10px;
     border: none;
     color: white;
     background-color: grey;
+    cursor: pointer;
 }
 
 #messages-container {

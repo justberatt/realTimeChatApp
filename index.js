@@ -35,18 +35,27 @@ const render = (messages) => {
 }
 
 onValue (referenceInDB, (snapshot) => {
-    const snapshotDoesExist = snapshot.exists();
-    if (snapshotDoesExist) {
-        const snapshotValues = snapshot.val();
-        const messages = Object.values(snapshotValues);
-        render(messages);
+    if (!snapshot.exists()) {
+        render('')
+        return
     }
+    const snapshotValues = snapshot.val();
+    const messages = Object.values(snapshotValues);
+    render(messages);
 })
 
+const toggleSendButton = () => {
+    if (messageInput.value.trim() !== '') // trim() is used to remove any leading or trailing whitespace from the input value, so even if the user types just spaces, the button will remain disabled
+        sendBtn.disabled = false
+    else
+        sendBtn.disabled = true;
+}
+
 const sendMessage = () => {
-    push(referenceInDB, messageInput.value);
-    messageInput.value = '';
-    sendBtn.disabled = true
+    if (messageInput.value) {
+        push(referenceInDB, messageInput.value);
+        messageInput.value = '';
+    }
 }
 
 const handleSend = (e) => {
@@ -56,5 +65,13 @@ const handleSend = (e) => {
     }
 }
 
+// const removeBtn = document.querySelector("#remove-btn")
+
+// const clearData = () => {
+//     remove(referenceInDB)
+// }
+
 messageInput.addEventListener('keypress', handleSend)
-sendBtn.addEventListener('click', handleSend);
+messageInput.addEventListener('input', toggleSendButton);
+sendBtn.addEventListener('click',  handleSend);
+// removeBtn.addEventListener('click', clearData);
