@@ -54,7 +54,7 @@ body {
     background-color: rgb(68, 68, 68);
     color: snow;
     border: none;
-    /* padding: 5px; */
+    padding-right: 12px;
     font-size: 14px;
     white-space: pre-wrap;
     width: 100%;
@@ -65,9 +65,8 @@ body {
 .send-button,
 .remove-btn {
     font-size: 14px;
-    line-height: 13px;
     font-weight: 500;
-    padding: 10px 20px;
+    line-height: 13px;
     border: none;
     cursor: pointer;
 }
@@ -75,11 +74,13 @@ body {
 .remove-btn {
     color:crimson;
     background-color: transparent;
+    height: 40px;
+    margin: 0 10px;
 }
 
 .send-button {
-    height: 50px;
-    width: 50px;
+    height: 40px;
+    width: 40px;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
     margin-right: 15px;
@@ -114,7 +115,7 @@ body {
     bottom: 0;
     right: 0;
     margin-bottom: 10px;
-    max-width: 60%;
+    max-width: 80%;
 }
 
 li {
