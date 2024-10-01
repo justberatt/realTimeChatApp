@@ -20,6 +20,7 @@ const referenceInDB = ref(database, "messages");
 
 const sendBtn = document.querySelector('#send-button');
 let messageInput = document.querySelector('#message-input');
+console.log(messageInput.value)
 const ulEl = document.querySelector('#messages')
 
 const render = (messages) => {
@@ -72,6 +73,7 @@ const handleSend = (e) => {
     if (e.type === 'click' || (e.type === 'keypress' && e.key === 'Enter')) {
         e.preventDefault();
         sendMessage();
+        toggleSendButton()
     }
 }
 

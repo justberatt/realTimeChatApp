@@ -27,54 +27,71 @@ body {
     bottom: 0;
 }
 
+.chat-input {
+    padding: 10px;
+    min-height: 40px;
+    width: 100%;
+    font-size: 16px;
+    outline: none; /* Remove default outline */
+    overflow-y: auto; /* Allow scrolling if content exceeds height */
+    max-height: 150px; /* Optional: Set max height to prevent infinite growth */
+    white-space: wrap; /* Allows text to wrap and preserve spaces */
+    background-color: rgb(68, 68, 68); /* Background color */
+}
+
+.input-container {
+    background-color: rgb(68, 68, 68);
+    border-radius: 25px;
+    margin-bottom: 10px;
+}
+
+.input-container__elements {
+    display: flex;
+    align-items: flex-end;
+}
+
 .message-input {
     background-color: rgb(68, 68, 68);
     color: snow;
-    border-radius: 10px;
     border: none;
-    padding: 10px;
+    /* padding: 5px; */
     font-size: 14px;
-    flex-grow: 80;
+    white-space: pre-wrap;
+    width: 100%;
+    outline: none;
     resize: none;
 }
 
-#input-container {
-    display: flex;
-    align-items: flex-end;
-    gap: 5px;
-    width: 100%;
-    margin: 0;
-    margin-bottom: 10px;
-    position: relative;
-}
 .send-button,
 .remove-btn {
     font-size: 14px;
     line-height: 13px;
     font-weight: 500;
     padding: 10px 20px;
-    border-radius: 10px;
     border: none;
     cursor: pointer;
-    flex-grow: 1;
+}
+
+.remove-btn {
+    color:crimson;
+    background-color: transparent;
 }
 
 .send-button {
-    position: absolute;
-    right: 10px;
-    align-self: center;
-    height: 40px;
-    width: 40px;
-    border-radius: 50%;
-    text-align: center;
+    height: 50px;
+    width: 50px;
+    border-top-right-radius: 50%;
+    border-bottom-right-radius: 50%;
+    margin-right: 15px;
 }
 
 .enabledBtn {
-    background-color: white;
-    color: black;
+    background: transparent;
+    color: rgb(167, 13, 233);
 }
 
 .disabledBtn {
+    background-color: transparent;
     opacity: 15%;
     cursor: default;
 }
