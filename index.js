@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"
+
 import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js"
 
 const firebaseConfig = {
@@ -14,13 +14,11 @@ const firebaseConfig = {
 
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const database = getDatabase(app);
 const referenceInDB = ref(database, "messages");
 
 const sendBtn = document.querySelector('#send-button');
 let messageInput = document.querySelector('#message-input');
-console.log(messageInput.value)
 const ulEl = document.querySelector('#messages')
 
 const render = (messages) => {
