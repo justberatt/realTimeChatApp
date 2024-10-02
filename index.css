@@ -115,7 +115,7 @@ body {
     bottom: 0;
     right: 0;
     margin-bottom: 10px;
-    max-width: 80%;
+    width: 100%;
 }
 
 li {
