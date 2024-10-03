@@ -27,18 +27,6 @@ body {
     bottom: 0;
 }
 
-.chat-input {
-    padding: 10px;
-    min-height: 40px;
-    width: 100%;
-    font-size: 16px;
-    outline: none; /* Remove default outline */
-    overflow-y: auto; /* Allow scrolling if content exceeds height */
-    max-height: 150px; /* Optional: Set max height to prevent infinite growth */
-    white-space: wrap; /* Allows text to wrap and preserve spaces */
-    background-color: rgb(68, 68, 68); /* Background color */
-}
-
 .input-container {
     background-color: rgb(68, 68, 68);
     border-radius: 25px;
@@ -57,6 +45,7 @@ body {
     padding-right: 12px;
     font-size: 14px;
     white-space: pre-wrap;
+    line-height: 20px;
     width: 100%;
     outline: none;
     resize: none;
@@ -64,6 +53,7 @@ body {
 
 .send-button,
 .remove-btn {
+    height: 40px;
     font-size: 14px;
     font-weight: 500;
     line-height: 13px;
@@ -74,12 +64,10 @@ body {
 .remove-btn {
     color:crimson;
     background-color: transparent;
-    height: 40px;
     margin: 0 10px;
 }
 
 .send-button {
-    height: 40px;
     width: 40px;
     border-top-right-radius: 50%;
     border-bottom-right-radius: 50%;
