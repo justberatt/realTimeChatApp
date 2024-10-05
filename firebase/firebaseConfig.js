@@ -1,5 +1,5 @@
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-app.js";
-import { getAuth, GoogleAuthProvider } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"
+import { getAuth } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"
 
 const firebaseConfig = {
     databaseURL: "https://real-time-chat-app-57ee0-default-rtdb.europe-west1.firebasedatabase.app",
@@ -12,5 +12,4 @@ const firebaseConfig = {
   };
 
 export const app = initializeApp(firebaseConfig);
-export const provider = new GoogleAuthProvider();
 export const auth = getAuth(app);

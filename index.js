@@ -1,4 +1,5 @@
 import { app, auth } from "./firebase/firebaseConfig.js";
+import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"
 import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js"
 
 const database = getDatabase(app);
@@ -67,6 +68,13 @@ const removeBtn = document.querySelector("#remove-btn")
 const clearData = () => {
     remove(referenceInDB)
 }
+
+const handleGoogle = () => {
+    const provider = new GoogleAuthProvider();
+    return signInWithPopup(auth, provider);
+}
+
+const signInBtn = document.querySelector("#sign-in-btn");
 
 messageInput.addEventListener('keypress', handleSend)
 messageInput.addEventListener('input', toggleSendButton);
