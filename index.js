@@ -1,5 +1,5 @@
 import { app, auth } from "./firebase/firebaseConfig.js";
-import { GoogleAuthProvider, signInWithPopup } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"
+import { GoogleAuthProvider, signInWithPopup, signOut } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-auth.js"
 import { getDatabase, ref, push, onValue, remove } from "https://www.gstatic.com/firebasejs/10.13.2/firebase-database.js"
 
 const database = getDatabase(app);
@@ -74,10 +74,22 @@ const handleGoogle = () => {
     return signInWithPopup(auth, provider);
 }
 
+const handleSignOut = () => {
+    signOut(auth).then(() => {
+        // Sign-out successful.
+        console.log("success")
+      }).catch((error) => {
+        // An error happened.
+        console.log(error)
+      });
+}
+
 const signInBtn = document.querySelector("#sign-in-btn");
+const signOutBtn = document.querySelector("#sign-out-btn");
 
 messageInput.addEventListener('keypress', handleSend)
 messageInput.addEventListener('input', toggleSendButton);
 sendBtn.addEventListener('click',  handleSend);
 removeBtn.addEventListener('click', clearData);
 signInBtn.addEventListener('click', handleGoogle);
+signOutBtn.addEventListener('click', handleSignOut);

@@ -74,12 +74,14 @@ body {
     margin-right: 15px;
 }
 
-.sign-in-btn-container {
+.sign-in-btn-container,
+.sign-out-btn-container {
     display: flex;
     justify-content: center;
 }
 
-.sign-in-btn {
+.sign-in-btn,
+.sign-out-btn {
     padding: 10px 15px;
     background-color: rgb(0, 170, 113);
     border-radius: 10px;
