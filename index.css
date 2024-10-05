@@ -74,12 +74,18 @@ body {
     margin-right: 15px;
 }
 
+.sign-in-btn-container {
+    display: flex;
+    justify-content: center;
+}
+
 .sign-in-btn {
     padding: 10px 15px;
     background-color: rgb(0, 170, 113);
     border-radius: 10px;
     border: none;
     color: white;
+    cursor: pointer;
 }
 
 .enabledBtn {

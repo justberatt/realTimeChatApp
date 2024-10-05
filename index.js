@@ -80,3 +80,4 @@ messageInput.addEventListener('keypress', handleSend)
 messageInput.addEventListener('input', toggleSendButton);
 sendBtn.addEventListener('click',  handleSend);
 removeBtn.addEventListener('click', clearData);
+signInBtn.addEventListener('click', handleGoogle);
