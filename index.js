@@ -44,9 +44,9 @@ const toggleSendButton = () => {
 
 //Make the textarea height to grow based on the user input
 messageInput.addEventListener('input', () => {
-    messageInput.style.height = 'auto'; // Reset the height
+    messageInput.style.height = 'auto'; // Reset the height, otherwise it won't go back to original form
     messageInput.style.height = messageInput.scrollHeight + 'px'; // Set the new height
-});
+})
 
 const sendMessage = () => {
     if (messageInput.value) {
@@ -69,15 +69,22 @@ const clearData = () => {
     remove(referenceInDB)
 }
 
-const handleGoogle = () => {
-    const provider = new GoogleAuthProvider();
+const handleGoogle = async () => {
+    const provider = await new GoogleAuthProvider();
     return signInWithPopup(auth, provider);
 }
+
+auth.onAuthStateChanged(user => {
+    if (user)
+        console.log('User is signed in:', user.email)
+    else
+        console.log('User is signed out')
+})
 
 const handleSignOut = () => {
     signOut(auth).then(() => {
         // Sign-out successful.
-        console.log("success")
+        console.log("Sign out success")
       }).catch((error) => {
         // An error happened.
         console.log(error)
