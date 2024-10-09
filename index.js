@@ -6,52 +6,37 @@ const database = getDatabase(app);
 const referenceInDB = ref(database, "messages");
 
 const sendBtn = document.querySelector('#send-button');
-let messageInput = document.querySelector('#message-input');
-const ulEl = document.querySelector('#messages')
+const messageInput = document.querySelector('#message-input');
+const ulEl = document.querySelector('#messages');
+const removeBtn = document.querySelector("#remove-btn");
+const signInBtn = document.querySelector("#sign-in-btn");
+const signOutBtn = document.querySelector("#sign-out-btn");
 
 const render = (messages) => {
-    let listItems = ''
-    for (let message of messages) {
-        listItems += `
-        <li>${message}</li>
-        `
-    }
-    ulEl.innerHTML = listItems
+    const listItems = messages.map(message => `<li>${message}</li>`).join('');
+    ulEl.innerHTML = listItems;
 }
 
-onValue (referenceInDB, (snapshot) => {
-    if (!snapshot.exists()) {
-        render('')
-        return
-    }
-    const snapshotValues = snapshot.val();
-    const messages = Object.values(snapshotValues);
-    render(messages);
-})
+const toggleButtonState = (button, isEnabled) => {
+    button.disabled = !isEnabled;
+    button.classList.toggle('enabledBtn', isEnabled);
+    button.classList.toggle('disabledBtn', !isEnabled);
+}
 
 const toggleSendButton = () => {
-    if (messageInput.value.trim() !== '') { // trim() is used to remove any leading or trailing whitespace from the input value, so even if the user types just spaces, the button will remain disabled
-        sendBtn.disabled = false
-        sendBtn.classList.add('enabledBtn');
-        sendBtn.classList.remove('disabledBtn');
-    }
-    else {
-        sendBtn.disabled = true;
-        sendBtn.classList.remove('enabledBtn');
-        sendBtn.classList.add('disabledBtn');
-    }
+    toggleButtonState(sendBtn, messageInput.value.trim() !== '');
 }
 
-//Make the textarea height to grow based on the user input
-messageInput.addEventListener('input', () => {
-    messageInput.style.height = 'auto'; // Reset the height, otherwise it won't go back to original form
-    messageInput.style.height = messageInput.scrollHeight + 'px'; // Set the new height
-})
+const adjustTextareaHeight = () => {
+    messageInput.style.height = 'auto';
+    messageInput.style.height = `${messageInput.scrollHeight}px`;
+}
 
 const sendMessage = () => {
     if (messageInput.value) {
         push(referenceInDB, messageInput.value);
         messageInput.value = '';
+        toggleSendButton();
     }
 }
 
@@ -59,44 +44,41 @@ const handleSend = (e) => {
     if (e.type === 'click' || (e.type === 'keypress' && e.key === 'Enter')) {
         e.preventDefault();
         sendMessage();
-        toggleSendButton()
     }
 }
 
-const removeBtn = document.querySelector("#remove-btn")
-
-const clearData = () => {
-    remove(referenceInDB)
-}
+const clearData = () => remove(referenceInDB);
 
 const handleGoogle = async () => {
-    const provider = await new GoogleAuthProvider();
+    const provider = new GoogleAuthProvider();
     return signInWithPopup(auth, provider);
 }
 
-auth.onAuthStateChanged(user => {
-    if (user)
-        console.log('User is signed in:', user.email)
-    else
-        console.log('User is signed out')
-})
-
 const handleSignOut = () => {
-    signOut(auth).then(() => {
-        // Sign-out successful.
-        console.log("Sign out success")
-      }).catch((error) => {
-        // An error happened.
-        console.log(error)
-      });
+    signOut(auth)
+        .then(() => console.log("Sign out success"))
+        .catch((error) => console.log(error));
 }
 
-const signInBtn = document.querySelector("#sign-in-btn");
-const signOutBtn = document.querySelector("#sign-out-btn");
+onValue(referenceInDB, (snapshot) => {
+    if (snapshot.exists()) {
+        const messages = Object.values(snapshot.val());
+        render(messages);
+    } else {
+        render([]);
+    }
+});
 
-messageInput.addEventListener('keypress', handleSend)
-messageInput.addEventListener('input', toggleSendButton);
-sendBtn.addEventListener('click',  handleSend);
+auth.onAuthStateChanged(user => {
+    console.log(user ? `User is signed in: ${user.email}` : 'User is signed out');
+});
+
+messageInput.addEventListener('input', () => {
+    adjustTextareaHeight();
+    toggleSendButton();
+});
+messageInput.addEventListener('keypress', handleSend);
+sendBtn.addEventListener('click', handleSend);
 removeBtn.addEventListener('click', clearData);
 signInBtn.addEventListener('click', handleGoogle);
 signOutBtn.addEventListener('click', handleSignOut);
