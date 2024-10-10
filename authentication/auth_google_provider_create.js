@@ -1,3 +1,5 @@
 import { GoogleAuthProvider } from "firebase/auth";
 
-const provider = new GoogleAuthProvider();
+export function auth_google_provider() {
+    return new GoogleAuthProvider();
+}

@@ -144,3 +144,88 @@ li:last-child {
 li:first-child {
     border-top-right-radius: 15px;
 }
+
+/* Added afterwards */
+
+#auth-container {
+    max-width: 300px;
+    margin: 2rem auto;
+    padding: 1.5rem;
+    background-color: #ffffff;
+    border-radius: 8px;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+}
+
+#sign-in-template, #sign-up-template {
+    display: flex;
+    flex-direction: column;
+}
+
+#sign-in-form, #sign-up-form {
+    display: flex;
+    flex-direction: column;
+    gap: 1rem;
+}
+
+#sign-in-form input, #sign-up-form input {
+    padding: 0.5rem;
+    border: 1px solid #ddd;
+    border-radius: 4px;
+}
+
+#sign-in-form button, #sign-up-form button {
+    padding: 0.5rem;
+    background-color: #4CAF50;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sign-in-form button:hover, #sign-up-form button:hover {
+    background-color: #45a049;
+}
+
+#show-sign-up, #show-sign-in {
+    color: #007bff;
+    text-decoration: none;
+    margin-top: 1rem;
+    text-align: center;
+    display: block;
+}
+
+#show-sign-up:hover, #show-sign-in:hover {
+    text-decoration: underline;
+}
+
+#sign-out-btn {
+    display: block;
+    margin: 1rem auto;
+    padding: 0.5rem 1rem;
+    background-color: #f44336;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#sign-out-btn:hover {
+    background-color: #d32f2f;
+}
+
+#google-sign-in {
+    margin-top: 1rem;
+    padding: 0.5rem;
+    background-color: #4285F4;
+    color: white;
+    border: none;
+    border-radius: 4px;
+    cursor: pointer;
+    transition: background-color 0.3s ease;
+}
+
+#google-sign-in:hover {
+    background-color: #357ae8;
+}
