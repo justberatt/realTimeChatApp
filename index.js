@@ -32,6 +32,7 @@ async function auth_sign_out() {
     try {
         await signOut(auth);
         console.log("User signed out successfully");
+        // Optionally, you can add additional actions here after sign-out
     } catch (error) {
         console.error("Error signing out:", error);
     }
@@ -45,7 +46,10 @@ function showSignIn() {
 }
 
 if (signOutBtn) {
-    signOutBtn.addEventListener('click', auth_sign_out);
+    signOutBtn.addEventListener('click', () => {
+        console.log("Sign out button clicked");
+        auth_sign_out();
+    });
 } else {
     console.error("Sign out button not found in the DOM");
 }
@@ -55,13 +59,17 @@ auth.onAuthStateChanged(user => {
         console.log(`User is signed in: ${user.email}`);
         authContainer.style.display = 'none';
         mainContent.style.display = 'block';
-        signOutBtn.style.display = 'block';
+        if (signOutBtn) {
+            signOutBtn.style.display = 'block';
+        }
     } else {
         console.log('User is signed out');
         authContainer.style.display = 'block';
         mainContent.style.display = 'none';
-        signOutBtn.style.display = 'none';
-        showSignIn(); // Show sign-in form by default when logged out
+        if (signOutBtn) {
+            signOutBtn.style.display = 'none';
+        }
+        showSignIn();
     }
 });
 
@@ -120,3 +128,14 @@ messageInput.addEventListener('input', () => {
 messageInput.addEventListener('keypress', handleSend);
 sendBtn.addEventListener('click', handleSend);
 removeBtn.addEventListener('click', clearData);
+
+function checkSignOutButton() {
+    const signOutBtn = document.querySelector("#sign-out-btn");
+    if (signOutBtn) {
+        console.log("Sign-out button exists");
+        console.log("Sign-out button display:", window.getComputedStyle(signOutBtn).display);
+        console.log("Sign-out button position:", signOutBtn.getBoundingClientRect());
+    } else {
+        console.log("Sign-out button does not exist in the DOM");
+    }
+}

@@ -201,14 +201,16 @@ li:first-child {
 
 #sign-out-btn {
     display: block;
-    margin: 1rem auto;
-    padding: 0.5rem 1rem;
+    position: fixed;
+    top: 10px;
+    right: 10px;
+    z-index: 9999;
     background-color: #f44336;
     color: white;
     border: none;
     border-radius: 4px;
+    padding: 10px 20px;
     cursor: pointer;
-    transition: background-color 0.3s ease;
 }
 
 #sign-out-btn:hover {
