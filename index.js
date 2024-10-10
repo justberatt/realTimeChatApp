@@ -39,8 +39,16 @@ async function auth_sign_out() {
 }
 
 function showSignIn() {
-    authContainer.innerHTML = '';
-    authContainer.appendChild(signInTemplate.content.cloneNode(true));
+    authContainer.innerHTML = `
+        <div class="auth-box">
+            <h1>Welcome to ChatApp</h1>
+            <p>Connect and chat with friends in real-time!</p>
+            <button id="google-sign-in" class="google-sign-in">
+                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
+                Sign in with Google
+            </button>
+        </div>
+    `;
     const googleSignInBtn = authContainer.querySelector('#google-sign-in');
     googleSignInBtn.addEventListener('click', auth_google_sign_in);
 }
