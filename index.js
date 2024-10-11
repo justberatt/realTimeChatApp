@@ -75,15 +75,23 @@ auth.onAuthStateChanged(user => {
 
 document.addEventListener('DOMContentLoaded', showSignIn);
 
+const formatTime = (timestamp) => {
+    const date = new Date(timestamp);
+    const hours = date.getHours().toString().padStart(2, '0');
+    const seconds = date.getSeconds().toString().padStart(2, '0');
+    return `${hours}:${seconds}`; // Return formatted time as HH:SS
+};
+
 const render = (messages) => {
-    const listItems = messages.map(message => 
-        `
+    const listItems = messages.map(message => {
+        const formattedTime = formatTime(message.timestamp);
+        return `
             <li>
-                <strong>${message.sender}:</strong> ${message.text} <br>
-                <small>${new Date(message.timestamp).toLocaleString()}</small>
+                <strong style="color: tomato;">${message.sender}:</strong> ${message.text}
+                <small style="color: black; margin-left: 10px;"><em>${formattedTime}</em></small>
             </li>
         `
-    ).join('');
+    }).join('');
     ulEl.innerHTML = listItems;
 }
 
@@ -108,7 +116,7 @@ const sendMessage = () => {
         const message = {
             text: messageInput.value,
             sender: user.displayName || user.email, // Use displayName or fallback to email
-            timestamp: Date.now() // Add timestamp for each message
+            timestamp: Date.now()// Add timestamp for each message
         };
         push(referenceInDB, message); // Push the message object to the database
         messageInput.value = ''; // Clear input field after sending
