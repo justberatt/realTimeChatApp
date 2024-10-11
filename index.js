@@ -77,7 +77,12 @@ document.addEventListener('DOMContentLoaded', showSignIn);
 
 const render = (messages) => {
     const listItems = messages.map(message => 
-        `<li><strong>${message.sender}:</strong> ${message.text} <br><small>${new Date(message.timestamp).toLocaleString()}</small></li>`
+        `
+            <li>
+                <strong>${message.sender}:</strong> ${message.text} <br>
+                <small>${new Date(message.timestamp).toLocaleString()}</small>
+            </li>
+        `
     ).join('');
     ulEl.innerHTML = listItems;
 }
