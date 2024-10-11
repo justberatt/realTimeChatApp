@@ -76,7 +76,9 @@ auth.onAuthStateChanged(user => {
 document.addEventListener('DOMContentLoaded', showSignIn);
 
 const render = (messages) => {
-    const listItems = messages.map(message => `<li>${message}</li>`).join('');
+    const listItems = messages.map(message => 
+        `<li><strong>${message.sender}:</strong> ${message.text} <br><small>${new Date(message.timestamp).toLocaleString()}</small></li>`
+    ).join('');
     ulEl.innerHTML = listItems;
 }
 
@@ -96,12 +98,18 @@ const adjustTextareaHeight = () => {
 }
 
 const sendMessage = () => {
-    if (messageInput.value) {
-        push(referenceInDB, messageInput.value);
-        messageInput.value = '';
+    const user = auth.currentUser; // Get the currently signed-in user
+    if (user && messageInput.value) {
+        const message = {
+            text: messageInput.value,
+            sender: user.displayName || user.email, // Use displayName or fallback to email
+            timestamp: Date.now() // Add timestamp for each message
+        };
+        push(referenceInDB, message); // Push the message object to the database
+        messageInput.value = ''; // Clear input field after sending
         toggleSendButton();
     }
-}
+};
 
 const handleSend = (e) => {
     if (e.type === 'click' || (e.type === 'keypress' && e.key === 'Enter')) {
@@ -115,9 +123,9 @@ const clearData = () => remove(referenceInDB);
 onValue(referenceInDB, (snapshot) => {
     if (snapshot.exists()) {
         const messages = Object.values(snapshot.val());
-        render(messages);
+        render(messages); // Render messages with sender info
     } else {
-        render([]);
+        render([]); // No messages case
     }
 });
 
