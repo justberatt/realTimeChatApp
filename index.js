@@ -128,14 +128,3 @@ messageInput.addEventListener('input', () => {
 messageInput.addEventListener('keypress', handleSend);
 sendBtn.addEventListener('click', handleSend);
 removeBtn.addEventListener('click', clearData);
-
-function checkSignOutButton() {
-    const signOutBtn = document.querySelector("#sign-out-btn");
-    if (signOutBtn) {
-        console.log("Sign-out button exists");
-        console.log("Sign-out button display:", window.getComputedStyle(signOutBtn).display);
-        console.log("Sign-out button position:", signOutBtn.getBoundingClientRect());
-    } else {
-        console.log("Sign-out button does not exist in the DOM");
-    }
-}
