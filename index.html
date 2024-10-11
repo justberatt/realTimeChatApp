@@ -15,15 +15,9 @@
     <title>Real-Time Chat App</title>
 </head>
 <body>
-    <div id="auth-container" class="auth-container">
-        <div class="auth-box">
-            <h1>Welcome to ChatApp</h1>
-            <p>Connect and chat with friends in real-time!</p>
-            <button id="google-sign-in" class="google-sign-in">
-                <img src="https://www.gstatic.com/firebasejs/ui/2.0.0/images/auth/google.svg" alt="Google logo">
-                Sign in with Google
-            </button>
-        </div>
+    <div id="auth-container">
+        <h2>Welcome to Chat App</h2>
+        <button id="google-sign-in">Sign In with Google</button>
     </div>
     <div id="main-content" style="display: none;">
         <div class="container">
@@ -51,7 +45,6 @@
     <template id="sign-in-template">
         <h2>Sign In</h2>
         <button id="google-sign-in">Sign In with Google</button>
-        <p>Don't have an account? Just click the button above to sign in or create an account with Google.</p>
     </template>
     
     <script src="index.js" type="module"></script>
