@@ -78,11 +78,12 @@ document.addEventListener('DOMContentLoaded', showSignIn);
 const formatTime = (timestamp) => {
     const date = new Date(timestamp);
     const hours = date.getHours().toString().padStart(2, '0');
-    const seconds = date.getSeconds().toString().padStart(2, '0');
-    return `${hours}:${seconds}`; // Return formatted time as HH:SS
+    const minutes = date.getMinutes().toString().padStart(2, '0');
+    return `${hours}:${minutes}`; // Return formatted time as HH:MM
 };
 
 const render = (messages) => {
+    console.log(messages)
     const listItems = messages.map(message => {
         const formattedTime = formatTime(message.timestamp);
         return `
